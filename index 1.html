@@ -1,0 +1,604 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex,nofollow"><style>html,body{margin:0}[hidden]{display:none!important}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
+<title>Family Holiday Questions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Public+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: one question per screen, a narrow reading column, a thin progress rule at the top, controls below the answers. */
+:root{
+  --bg:#f6f6f2; --surface:#ffffff; --ink:#1f2622; --muted:#5c665f; --line:#d9ddd5; --accent:#2f5d50; --accent-ink:#ffffff; --on:#e3ede8; --least:#f3e6e1; --least-ink:#7a3b2a;
+  --f-display:"Newsreader", Georgia, "Times New Roman", serif; --f-body:"Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#161a18;--surface:#1f2421;--ink:#e9ece8;--muted:#a3ada6;--line:#353d38;--accent:#8fc2b0;--accent-ink:#10201a;--on:#24352e;--least:#3a2a25;--least-ink:#f0b9a6;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#161a18;--surface:#1f2421;--ink:#e9ece8;--muted:#a3ada6;--line:#353d38;--accent:#8fc2b0;--accent-ink:#10201a;--on:#24352e;--least:#3a2a25;--least-ink:#f0b9a6;color-scheme:dark}
+html,body{background:var(--bg);color:var(--ink)}
+body{font:16px/1.55 var(--f-body);padding-inline:16px;padding-block:0 40px}
+.top{position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);z-index:2;padding-block:10px 8px;max-width:560px;margin:0 auto}
+#progress{height:3px;background:var(--line);border-radius:2px;overflow:hidden}
+#progress::after{content:"";display:block;height:100%;width:var(--p,0%);background:var(--accent);transition:width .3s}
+.meta{display:flex;justify-content:space-between;gap:12px;font-size:13px;color:var(--muted);margin-top:6px;font-variant-numeric:tabular-nums}
+main{max-width:560px;margin:0 auto;display:flex;flex-direction:column;gap:14px;padding-top:18px}
+h1{font:600 clamp(28px,7vw,36px)/1.15 var(--f-display);margin:8px 0 4px;text-wrap:balance}
+.q{font:500 clamp(21px,5.2vw,25px)/1.3 var(--f-display);margin:4px 0 6px;text-wrap:balance;outline:none}
+.q.stem{font-style:italic}
+.prompt{margin:0;color:var(--muted);font-size:14px;letter-spacing:.01em}
+.lede,.info{margin:0;max-width:62ch}
+.info{font:500 21px/1.4 var(--f-display);outline:none}
+.testnote{margin:0;font-size:14px;color:var(--muted);border-left:3px solid var(--accent);padding-left:10px}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opts.extras{flex-direction:row;flex-wrap:wrap;gap:6px;padding-top:6px;border-top:1px dashed var(--line)}
+.opt{font:inherit;text-align:left;background:var(--surface);color:var(--ink);border:1.5px solid var(--line);border-radius:10px;padding:13px 14px;cursor:pointer;min-height:48px}
+.opt:hover{border-color:var(--muted)}
+.opt.on{border-color:var(--accent);background:var(--on);font-weight:600}
+.opt.minor{font-size:14px;padding:8px 12px;min-height:44px;border-radius:999px;color:var(--muted)}
+.opt.minor.on{color:var(--ink)}
+.opt.check::before{content:"";display:inline-block;width:14px;height:14px;border:1.5px solid var(--muted);border-radius:3px;margin-right:10px;vertical-align:-2px}
+.opt.check.on::before{background:var(--accent);border-color:var(--accent)}
+.names{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}
+.bw{display:flex;flex-direction:column;gap:8px}
+.bwrow{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;background:var(--surface);border:1.5px solid var(--line);border-radius:10px;padding:10px 12px}
+.bwrow.most{border-color:var(--accent);background:var(--on)}
+.bwrow.least{background:var(--least)}
+.bwlabel{min-width:0;flex:1 1 180px;font-weight:500}
+.bwbtns{display:flex;gap:6px}
+.opt.pill{min-height:44px;padding:7px 14px;border-radius:999px;font-size:14px}
+.bwrow.least .opt.pill.on{background:var(--least);border-color:var(--least-ink);color:var(--least-ink)}
+textarea,input[type=text],select{font:inherit;color:var(--ink);background:var(--surface);border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;width:100%;box-sizing:border-box}
+.pair{display:flex;flex-direction:column;gap:6px;padding:10px;border:1px solid var(--line);border-radius:10px}
+.inline{display:flex;align-items:center;gap:6px;font-size:15px}
+.nav{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:10px}
+button.primary{font:600 16px var(--f-body);background:var(--accent);color:var(--accent-ink);border:0;border-radius:10px;padding:13px 26px;cursor:pointer;min-height:48px}
+button.primary:disabled{opacity:.35;cursor:not-allowed}
+button.ghost{font:500 15px var(--f-body);background:none;color:var(--muted);border:1.5px solid var(--line);border-radius:10px;padding:11px 18px;cursor:pointer;min-height:44px}
+button.ghost.small{align-self:flex-start;padding:7px 12px;min-height:36px;font-size:14px}
+button:focus-visible,.opt:focus-visible,textarea:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+@media (prefers-reduced-motion: reduce){#progress::after{transition:none}}
+</style>
+</head><body>
+<div class="top"><div id="progress" role="progressbar" aria-label="Progress"></div><div class="meta"><span id="count"></span><span id="status" aria-live="polite"></span></div></div>
+<main id="main" aria-live="polite"></main>
+<script>
+// QA-4 family questionnaire core: items, per-person order, checks. Build 1 (test on Anton), Oct 6 2026.
+// Text of record: THAI-147 checkpoints 33-37 with Anton's D-093 calls (checkpoint 38). B4/B6: THAI-115. IPIP: 50-item Big-Five markers (public domain).
+(function (root) {
+  const XO = ["No preference", "It depends", "Don't know"];
+  const PNS = "Prefer not to say";
+  const LA = (id, dim, q, opts, key, ordinal) => ({ id, dim, kind: "layerA", q, opts, key, ordinal: !!ordinal, extra: XO });
+  const layerA = [
+    LA("D1a","D1","You have a free afternoon in a town you don't know well. What would you do?",["Walk the old streets and find out about their history","Go back to a café or shop I found earlier on the trip and liked"],{A:2,B:0}),
+    LA("D1b","D1","At a family dinner out, the menu has a dish none of you has tried. What do you order?",["The new dish","Something I know I like","Something I know, plus a taste of the new dish"],{A:2,B:0,C:1}),
+    LA("D1c","D1","There are two walks near where you are staying. Which do you choose?",["A little-known trail, to see what we find","A popular path that others recommend"],{A:2,B:0}),
+    LA("D1d","D1","A friend asks you to a one-off evening class on a topic you know nothing about. Would you go?",["Yes, to learn something new","No, I'd rather do something I already enjoy"],{A:2,B:0}),
+    LA("D2a","D2","It is the first full day of a trip. How should the morning go?",["Sleep in and start slowly","Be up and out early to start seeing things"],{A:2,B:0}),
+    LA("D2b","D2","The day after a long journey, which plan sounds better?",["An easy, quiet day with little to do","A full day of seeing and doing things"],{A:2,B:0}),
+    LA("D2c","D2","After a busy day out together, the family has a free evening. What would you like?",["A quiet evening in","Going out again for dinner and a walk"],{A:2,B:0}),
+    LA("D2d","D2","Rain falls all day during a weekend away with friends. What would you rather do?",["Stay in: read, rest or play games","Find something to go out and do"],{A:2,B:0}),
+    LA("D3a","D3","Two lookout points have the same view. One is lively, with crowds and street performers; the other is quiet. Which do you visit?",["The lively one","The quiet one"],{A:2,B:0}),
+    LA("D3b","D3","A street fair with crowds and music is on near you tonight. What do you do?",["Go and enjoy the buzz","Go early, before it gets crowded","Skip it; it is too busy for me"],{A:2,B:1,C:0},true),
+    LA("D3c","D3","Friends suggest a big festival with crowds, food stalls and shows. How long would you stay?",["Most of the day","An hour or two","I would not go"],{A:2,B:1,C:0},true),
+    LA("D3d","D3","Picking a place for a family dinner, which would you choose?",["A lively, loud place with lots going on","A calm place where we can talk easily"],{A:2,B:0}),
+    LA("D4a","D4","The family has a free afternoon on a trip. What would you prefer?",["Split up, each do our own thing, and meet for dinner","Stay together all afternoon"],{A:2,B:0}),
+    LA("D4b","D4","When the family eats out and people want different food, what would you rather do?",["We all agree on one place and eat together","Some eat in one place and some in another"],{A:0,B:2}),
+    LA("D4c","D4","During a holiday, how much time each day would you like on your own?",["An hour or more to myself","Less than an hour","None; I would rather be with the others"],{A:2,B:1,C:0},true),
+    LA("D4d","D4","Which plan suits you best for a weekend with friends?",["Doing everything as a group","Some group plans and some time to go off on my own","Mostly my own plans, meeting the group now and then"],{A:0,B:1,C:2},true),
+    LA("D5a","D5","Think of one day on a trip. Which kind of day do you prefer?",["A set plan with times","An open day where we decide as we go"],{A:2,B:0}),
+    LA("D5b","D5","Bad weather cancels the plan for the day. Which fits you?",["I like a backup plan ready in advance","I am happy to make something up on the spot"],{A:2,B:0}),
+    LA("D5c","D5","You want to do a popular activity. What would you rather do?",["Book ahead, even if it ties us to that day","Decide on the day, even if it may be full"],{A:2,B:0}),
+    LA("D5d","D5","Seeing a new place in one day, how would you go about it?",["Follow a route and times planned in advance","Wander, with no set route or times"],{A:2,B:0}),
+    LA("D6a","D6","You arrive after a long travel day. For that first night, what matters more?",["A comfortable room, even if it is further from the sights","A room close to the sights, even if it is less comfortable"],{A:2,B:0}),
+    LA("D6b","D6","Where you are staying, the bed and room are quite different from home. How would that be for you?",["Fine; it is part of the fun","Hard to rest; I would want things more like home"],{A:0,B:2}),
+    LA("D6c","D6","Something you would really like to see means getting up before sunrise. Would you go?",["Yes, it is worth it","No, I would rather keep my sleep"],{A:0,B:2}),
+    LA("D6d","D6","Away from home, the day is cold and gray. What would you choose?",["Go out anyway, wrapped up","Stay somewhere warm and comfortable"],{A:0,B:2}),
+  ];
+  const ACC = ["Very inaccurate","Moderately inaccurate","Neither accurate nor inaccurate","Moderately accurate","Very accurate"];
+  const IP = (n, dim, sign, q) => ({ id: dim + n + sign, dim, kind: "ipip", q, key: sign, scale: ACC });
+  const ipipE = [IP(1,"E","+","Am the life of the party."),IP(6,"E","-","Don't talk a lot."),IP(11,"E","+","Feel comfortable around people."),IP(16,"E","-","Keep in the background."),IP(21,"E","+","Start conversations."),IP(26,"E","-","Have little to say."),IP(31,"E","+","Talk to a lot of different people at parties."),IP(36,"E","-","Don't like to draw attention to myself."),IP(41,"E","+","Don't mind being the center of attention."),IP(46,"E","-","Am quiet around strangers.")];
+  const ipipI = [IP(5,"I","+","Have a rich vocabulary."),IP(10,"I","-","Have difficulty understanding abstract ideas."),IP(15,"I","+","Have a vivid imagination."),IP(20,"I","-","Am not interested in abstract ideas."),IP(25,"I","+","Have excellent ideas."),IP(30,"I","-","Do not have a good imagination."),IP(35,"I","+","Am quick to understand things."),IP(40,"I","+","Use difficult words."),IP(45,"I","+","Spend time reflecting on things."),IP(50,"I","+","Am full of ideas.")];
+  // Blueprint split: section 2 gets E1,E6,E11,E16,E21 and I5,I10,I15,I20,I25; section 5 the rest.
+  const AGR = ["Strongly disagree","Disagree","Neither agree nor disagree","Agree","Strongly agree"];
+  const B = {
+    "B4-01": { id:"B4-01", dim:"B4", kind:"likert", q:"I enjoy swimming.", scale:AGR, key:"+", water:true },
+    "B4-02": { id:"B4-02", dim:"B4", kind:"likert", q:"I like spending time in or near water, such as a lake, a river, a pool or the sea.", scale:AGR, key:"+", water:true, general:true },
+    "B4-04": { id:"B4-04", dim:"B4", kind:"likert", q:"I would rather stay dry than go in the water.", scale:AGR, key:"-", water:true },
+    "B4-05": { id:"B4-05", dim:"B4", kind:"likert", q:"I enjoy being in or on the water even when the weather is gray or rainy.", scale:AGR, key:"+", water:true },
+    "B6-01": { id:"B6-01", dim:"B6", kind:"bipolar", q:"Think of a free day outdoors. Which weather would you enjoy most?", scale:["Cold","Cool","Mild","Warm","Hot"] },
+    "B6-02": { id:"B6-02", dim:"B6", kind:"bipolar", q:"Compared with the weather you are used to at home, how would you like a day out to feel?", scale:["Much colder","A bit colder","About the same","A bit warmer","Much warmer"] },
+    "B7-1": { id:"B7-1", dim:"B7", kind:"choice", q:"On a free day with nothing planned, what time would you like to start your first activity?", opts:["Before 7 am","7 to 8 am","8 to 9 am","9 to 10 am","10 to 11 am","11 am to noon","After noon"], ordinal:true, fixedOrder:true, extra:["No preference","Don't know"] },
+    "B7-2": { id:"B7-2", dim:"B7", kind:"choice", q:"On a free day, what time would you like the day's activities to end?", opts:["Before 6 pm","6 to 8 pm","8 to 10 pm","10 pm to midnight","After midnight"], ordinal:true, fixedOrder:true, extra:["No preference","Don't know"] },
+  };
+  const BW_OBJ = {1:"A walk in nature",2:"Visiting a historic site",3:"Trying food you have never eaten",4:"Spending time in the water",5:"A busy evening out in town",6:"A day out in cold, snowy weather",7:"A quiet day of rest"};
+  const BW_SETS = [[2,3,5],[5,6,1],[1,2,4],[6,7,2],[3,4,6],[7,1,3],[4,5,7]];
+  const BW_PROMPT = "Imagine a free day on a trip. Of these three things, which would you most like to do, and which would you least like to do?";
+  const CHECK = { id:"BW-check", dim:"BWC", kind:"multi", q:"Imagine a free day on a trip. Which of these would you be happy to do? Tick all that apply.", opts:[], exclusive:["None of these"], unscored:true };
+  const FAMILY = ["Anton","Adriaan","Mari","Hugh","Antonet","Adri","Anri","André"];
+  const ALLERGIES = ["Allergy to peanuts","Allergy to tree nuts","Allergy to shellfish","Allergy to fish","Allergy to eggs","Allergy to milk","Allergy to wheat","Allergy to soy","Allergy to sesame","Other allergy (please say which)"];
+  const F = {
+    "F-food": { id:"F-food", dim:"F", kind:"multi", q:"Do you have any food needs we must plan around? Tick all that apply.", opts:["None","Vegetarian","Vegan","No pork","No beef","Halal","Kosher","Gluten-free","Dairy-free"].concat(ALLERGIES,["Other need (please say)","Don't know"]), exclusive:["None","Don't know"], textFor:["Other allergy (please say which)","Other need (please say)"] },
+    "F-access": { id:"F-access", dim:"F", kind:"multi", q:"Does anything make walking, stairs or long days hard for you? Tick all that apply.", opts:["No","Long walks are hard","Stairs or steep paths are hard","I use a wheelchair","I use a walking stick or frame","I need regular rest breaks","Other (please say)","Don't know"], exclusive:["No","Don't know"], textFor:["Other (please say)"] },
+    "F-dates": { id:"F-dates", dim:"F", kind:"multi", q:"The family holiday is planned for December 2027 or January 2028. Which weeks could you be away? Tick all that apply.", opts:["Dec 1 to 7","Dec 8 to 14","Dec 15 to 21","Dec 22 to 28","Dec 29 to Jan 4","Jan 5 to 11","Jan 12 to 15","I can't be away in any of these weeks","I don't know yet"], exclusive:["I can't be away in any of these weeks","I don't know yet"] },
+    "F-refuse": { id:"F-refuse", dim:"F", kind:"multi", q:"Are there any activities you will not do at all? Tick all that apply.", opts:["None","High places (cliffs, cable cars)","Boats","Deep water","Snow or ice","Small planes or helicopters","Animals up close","Long hikes","Caves or tight spaces","Crowded places","Very cold weather","Very hot weather","Long drives","High altitude","Other (please say)","Don't know"], exclusive:["None","Don't know"], textFor:["Other (please say)"] },
+    "F-flight": { id:"F-flight", dim:"F", kind:"choice", q:"What is the longest single flight you are willing to take?", opts:["No flights","Up to 2 hours","Up to 4 hours","Up to 6 hours","Up to 8 hours","Up to 10 hours","Up to 12 hours","Up to 14 hours","Longer is fine"], ordinal:true, fixedOrder:true, extra:["Don't know"] },
+    "F-swim": { id:"F-swim", dim:"F", kind:"choice", q:"How well can you swim?", opts:["I can't swim","I can swim a little, only where I can stand","I can swim a short distance in water too deep to stand","I am a confident swimmer"], ordinal:true, fixedOrder:true, extra:["Don't know"], water:true },
+    "F-consent": { id:"F-consent", dim:"F", kind:"choice", q:"Your answers are used only to plan this holiday, and the family will not see them. Is that OK?", opts:["Yes, that's OK","I'd like to talk to Anton first","Not sure yet"], fixedOrder:true, extra:[] },
+    "D040": { id:"D040", dim:"F", kind:"d040", q:"Private and optional: is there anyone you would rather not do a particular activity with? This answer is never shown to anyone in the family. It is used only to avoid putting people together in small-group activities." },
+  };
+  const ALLERGY_FOLLOW = { id:"F-food-trace", dim:"F", kind:"choice", followOf:"F-food", q:"For any food you are allergic to: does even a small trace make you ill, so it must be kept apart when cooking?", opts:["Yes","No"], fixedOrder:true, extra:["Don't know"] };
+  const HOLD = {
+    H1: { id:"H1", dim:"H", kind:"choice", q:"Which of these days would you enjoy most?", opts:["A guided morning in an old town, a quiet afternoon, and dinner somewhere calm","A slow start, a free afternoon to wander, and a late night out somewhere lively","An early start for a day of walking with a packed lunch outside, then an early night"], extra:["Don't know"], holdout:true },
+    H2: { id:"H2", dim:"H", kind:"choice", q:"Pick the day you would like best.", opts:["People go off in twos and threes to different things, and swap stories in the evening","A full day out together, everyone on the same outing, planned in advance","A lazy day where we are staying, with one short outing"], extra:["Don't know"], holdout:true },
+    H3: { id:"H3", dim:"H", kind:"choice", q:"How would you most like to arrange the holiday?", opts:["Stay in one place the whole holiday and take day trips","Move to a new place every two or three days","Two places: a busy one first, then a quiet one"], extra:["Don't know"], holdout:true },
+    H4: { id:"H4", dim:"H", kind:"choice", q:"If you could choose the overall feel of the holiday, which would it be?", opts:["Mostly outdoor days: walks, parks and open air","Mostly town days: sights, museums, shops and food","Mostly slow days: rest where we are staying, short strolls and long meals"], extra:["Don't know"], holdout:true },
+  };
+
+  // ---------- Build 3 item set (THAI-244 run 4, section I; D-096 to D-103). IPIP and H1-H4 cut (D-103). ----------
+  const DK = "Don't know", NP = "No preference";
+  const NIGHTS = ["Up to 7 nights","8 to 10 nights","11 to 14 nights","15 to 21 nights","22 nights or more"];
+  const NEW = {
+    "L1": { id:"L1", dim:"L", kind:"choice", q:"If you could choose, how long would the holiday be?", opts:NIGHTS, fixedOrder:true, extra:[NP,DK] },
+    "L2": { id:"L2", dim:"L", kind:"choice", q:"What is the longest you could be away from home for this holiday?", opts:NIGHTS, fixedOrder:true, extra:["Not sure"] },
+    "HT1": { id:"HT1", dim:"HT", kind:"choice", q:"Where would you most like to stay?", opts:["A large resort with a lot on site","A small, quiet hotel","A private house or villa for the family","A few nights in each kind"], keepLast:1, extra:[NP,DK] },
+    "HT2": { id:"HT2", dim:"HT", kind:"choice", q:"What would you most like close to where you stay?", opts:["Restaurants and shops you can walk to","Sights and things to do you can walk to","Quiet, green surroundings","Everything we need on site, so there is no need to go out"], tags:["T-CITY T-PACE","T-CULTURE T-PACE","T-QUIET T-NATURE","T-RESORT"], extra:[NP,DK] }, // THAI-244 R1: new text/options, shuffled; no longer a water item
+    "HT3": { id:"HT3", dim:"HT", kind:"choice", q:"Would you rather share a house or villa with the whole family, or have your own hotel room (alone or with your partner)?", opts:["Share a house or villa","Either is fine","My own hotel room"], fixedOrder:true, extra:[DK] },
+    "ST1": { id:"ST1", dim:"ST", kind:"choice", q:"Would you rather stay in one place or move around?", opts:["One place the whole time","Two places","Three or more places"], fixedOrder:true, extra:[NP,DK] },
+    "DN1": { id:"DN1", dim:"DN", kind:"choice", q:"Most evenings on a holiday, where would you like to eat?", opts:["Simple local places","A good restaurant","Where we are staying","A mix"], keepLast:1, extra:[NP,DK], food:true },
+    "DN2": { id:"DN2", dim:"DN", kind:"choice", q:"On a 10-day holiday, how many special dinners out would you like, at a nicer place with a longer meal?", opts:["None","1 or 2","3 or 4","5 or more"], fixedOrder:true, extra:[NP,DK], food:true }, // THAI-244 R3; B7
+    "DN3": { id:"DN3", dim:"DN", kind:"choice", q:"On holiday, how much of the local food would you like to eat?", opts:["Mainly local food","A mix of local food and food I know","Mainly food I know"], fixedOrder:true, extra:[NP,DK], food:true },
+    "AC1": { id:"AC1", dim:"AC", kind:"choice", q:"On a 10-day holiday, on how many days would you like a planned outing?", opts:["None or 1 day","2 to 3 days","4 to 5 days","6 to 7 days","8 days or more"], fixedOrder:true, extra:[NP,DK] },
+    "AC2": { id:"AC2", dim:"AC", kind:"choice", q:"On a day with a planned outing, how many outings would you like that day?", opts:["One","Two","Three or more"], fixedOrder:true, extra:[NP,DK] },
+    "AC3": { id:"AC3", dim:"AC", kind:"choice", q:"On a 10-day holiday, how many full days of rest would you like, with nothing planned?", opts:["None","1 day","2 to 3 days","4 to 5 days","6 days or more"], fixedOrder:true, extra:[NP,DK] },
+  };
+  const AR_STEM = "How do you feel about doing this on the holiday?";
+  const AR_TXT = ["Snorkelling.","A boat trip, such as island hopping.","A beach day.","A spa visit or a massage.","A cooking class.","A safari or a wildlife park.","Old towns, castles, temples or other historic sites.","Local markets.","A day seeing the sights in a city.","Fun in the snow other than skiing, such as sledding or snowshoes.","Kayaking or paddle boarding.","A show, a concert or a play.","Shopping.","A scenic train ride or drive.","A round of golf.","A night out with music or drinks.","A theme park.","A zipline or an adventure park.","Hot springs or thermal baths.","A guided food tour.","Skiing or snowboarding.","Christmas markets and lights.","A museum or a gallery.","A walk in nature or a garden."];
+  const AR_WATER = ["AR01","AR02","AR03","AR11"], AR_FOOD = ["AR05","AR08","AR20"];
+  AR_TXT.forEach((t, k) => { const id = "AR" + String(k + 1).padStart(2, "0"); NEW[id] = { id, dim:"AR", kind:"choice", prompt:AR_STEM, q:t, opts:["Keen","Happy to join","Rather not","Won't"], fixedOrder:true, extra:[DK], water:AR_WATER.includes(id), food:AR_FOOD.includes(id) }; });
+  const HM_STEM = "Where we stay, how much does this matter to you?";
+  const HM_TXT = ["A lift (elevator), so you don't need the stairs.","A pool.","A beach you can walk to.","A quiet place at night.","Air conditioning.","Good heating.","A kitchen we can cook in."];
+  HM_TXT.forEach((t, k) => { const id = "HM" + (k + 1); NEW[id] = { id, dim:"HM", kind:"choice", prompt:HM_STEM, q:t, opts:["Must have","Nice to have","Don't mind"], fixedOrder:true, extra:[DK], water:(id === "HM2" || id === "HM3") }; });
+  const R_STEM = "How do you feel about a holiday here?";
+  const R_TXT = ["European cities at Christmas.","The Alps and snow.","The northern lights: Iceland, Lapland or Norway.","The Mediterranean and the Canary Islands in winter.","North American cities at Christmas.","North American snow and mountains.","US national parks and road trips.","Florida and Hawaii.","The Caribbean, Mexico and Costa Rica.","South America, where it is summer in December and January.","Africa: safari, Cape Town or the Indian Ocean islands.","The Middle East.","Asia.","Australia, New Zealand and the Pacific islands."];
+  const R_OPTS = ["Keen","Happy to go","Rather not","Won't","Been there"];
+  R_TXT.forEach((t, k) => { const id = "R" + String(k + 1).padStart(2, "0"); NEW[id] = { id, dim:"R", kind:"choice", prompt:R_STEM, q:t, opts:R_OPTS, fixedOrder:true, extra:[DK] }; });
+  // Step-2 places (THAI-244 run 2 G2 list, 74, plus Costa Rica in R09 per section I; PROPOSED, THAI-246 owns the list)
+  const PLACES = {
+    R01:["Vienna","Prague","Paris","London","Munich and Nuremberg","Copenhagen"],
+    R02:["Swiss Alps (Zermatt)","Austrian Tyrol","French Alps (Chamonix)","Italian Dolomites"],
+    R03:["Iceland","Finnish Lapland (Rovaniemi)","Tromsø (Norway)","Swedish Lapland (Abisko)"],
+    R04:["Tenerife","Gran Canaria","Madeira","Malta","Cyprus","Seville and Andalusia"],
+    R05:["New York","Chicago","Toronto","Montreal","Quebec City"],
+    R06:["Banff","Whistler","Aspen","Park City","Lake Tahoe"],
+    R07:["Grand Canyon and Utah parks","Death Valley and Joshua Tree","California coast road","Yellowstone in winter","Big Bend"],
+    R08:["Orlando","Miami and the Keys","Maui","Oahu","Big Island"],
+    R09:["Riviera Maya","Los Cabos","Jamaica","Barbados","Turks and Caicos","Puerto Rico","Costa Rica"],
+    R10:["Rio de Janeiro","Patagonia","Cusco and Machu Picchu","Buenos Aires","Galápagos","Cartagena"],
+    R11:["Kruger safari","Cape Town and the Garden Route","Victoria Falls","Mauritius","Zanzibar","Seychelles"],
+    R12:["Dubai","Abu Dhabi","Oman","Jordan (Petra)"],
+    R13:["Thailand","Bali","Vietnam","Japan","Sri Lanka","Maldives"],
+    R14:["Sydney","Great Barrier Reef","New Zealand South Island","Fiji","Melbourne","Tahiti"],
+  };
+  const PICK_Q = "Next you will rate some places. Which of these parts of the world should we show you places from?"; // THAI-244 R5; "(choice X of N)" added per screen
+  const RPA_Q = "Would you go there again on this holiday?", RPA_OPTS = ["Yes, happily","Maybe","No"]; // THAI-244 R6: after an RP "Been there"
+  const RP_Q = "How do you feel about a holiday in this place?";
+  const CLOSE_Q = "Was any question unclear? Which one?";
+  // Cap-of-4 rule (THAI-244 H4 c / section I). rVals: {R01:"A"..}; picks: array of region ids chosen on PICK screens so far.
+  // Returns { pickPools: [pool per PICK screen], regions: final region list (when all picks made) }.
+  function stepTwo(rOrder, rVals, picks) {
+    const keen = rOrder.filter(id => rVals[id] === "A"), happy = rOrder.filter(id => rVals[id] === "B");
+    let fixed, pool, nPick;
+    if (keen.length > 4) { fixed = []; pool = keen; nPick = 4; }
+    else { fixed = keen.slice(); const free = 4 - keen.length; if (happy.length <= free) { fixed = fixed.concat(happy); pool = []; nPick = 0; } else { pool = happy; nPick = free; } }
+    const pickPools = [], chosen = [];
+    for (let k = 0; k < nPick; k++) { const left = pool.filter(x => !chosen.includes(x)); pickPools.push(left); const p = picks[k]; if (p && left.includes(p)) chosen.push(p); else break; }
+    const complete = chosen.length === nPick;
+    const regions = rOrder.filter(id => fixed.includes(id) || chosen.includes(id));
+    return { nPick, pickPools, complete, regions, keen, happy };
+  }
+  const TEXTS = {
+    welcome: [
+      "Welcome! This questionnaire helps us plan our family holiday in December or January. It takes about 15 to 25 minutes, and there are no right or wrong answers.",
+      "Please answer each question on its own, as if it were the only question you had been asked. Don't try to keep your answers consistent with earlier ones, and don't balance one answer against another. Your first honest answer to each question is the one we need.",
+      "Your answers are used only to plan this holiday. The family will see the final plan, but not your answers.",
+      "You can choose “Prefer not to say” on any question. Before anything is decided, you will see what we took from your answers and can correct it.",
+      "There are between 105 and 160 questions, depending on your answers. You can stop, go back, exit, and start where you left off at any point."
+    ],
+    anythingElse: "Optional: is there anything else about the holiday you would like to add?",
+    close: CLOSE_Q,
+    ipipPrompt: "Describe yourself as you generally are now. How well does this describe you?",
+    likertPrompt: "How much do you agree?",
+  };
+
+  // ---------- PRNG ----------
+  function rng(seed) { let a = seed >>> 0; return function () { a = (a + 0x6D2B79F5) >>> 0; let t = a; t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; }; }
+  function shuffle(arr, r) { const a = arr.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+  const byId = {}; layerA.forEach(i => byId[i.id] = i); Object.assign(byId, B, F, NEW); // IPIP and HOLD (H1-H4) no longer in the item bank (D-103)
+
+  // ---------- order (build 3: THAI-244 section J order + D-094 dispersal) ----------
+  const BASE_SEQ = ["D1","D4","D2","D5","D3","D6"];
+  function layerASection(slots, r) {
+    const shift = Math.floor(r() * 6), rev = r() < 0.5;
+    let seq = BASE_SEQ.slice(shift).concat(BASE_SEQ.slice(0, shift)); if (rev) seq.reverse();
+    return seq.map(d => d + slots[0]).concat(seq.map(d => d + slots[1]));
+  }
+  const hasWater = s => BW_SETS[s].includes(4);
+  function bwOrder(r) { // D-094: the 4 water-free sets first, the 3 water sets (object 4) after B4-02
+    return shuffle([0,1,3,5], r).concat(shuffle([2,4,6], r));
+  }
+  // D-094 targets 5, 14, 25, 35, 47, 55, 63 rescaled x104/67 to the 104-screen core (1-based core positions), each +-1
+  const BW_TARGETS = [5,14,25,35,47,55,63].map(t => Math.round(t * 104 / 67));
+  const CORE_N = 104;
+  const RIDS = Object.keys(NEW).filter(id => /^R\d\d$/.test(id)), ARIDS = Object.keys(NEW).filter(id => /^AR\d\d$/.test(id)), HMIDS = Object.keys(NEW).filter(id => /^HM\d$/.test(id));
+  function buildOrder(seed) {
+    const r = rng(seed);
+    for (let attempt = 0; attempt < 5000; attempt++) {
+      const S1 = layerASection(["a","b"], r).concat(layerASection(["c","d"], r));
+      const S2 = shuffle(RIDS, r);
+      const S6a = ["B4-02"].concat(shuffle(["B4-01","B6-02","B7-1","L1","HT1","DN1","AC1"], r));
+      const MID = shuffle(ARIDS, r);
+      shuffle(["HT2","DN3","ST1","AC2"], r).forEach(id => MID.splice(Math.floor(r() * (MID.length + 1)), 0, id));
+      const HM = shuffle(HMIDS, r);
+      const S6b = ["B6-01"].concat(shuffle(["B4-04","B4-05","B7-2","HT3","DN2","L2","AC3"], r));
+      const S7 = shuffle(["F-food","F-access","F-dates","F-refuse","F-flight","F-swim","D040"], r).concat(["F-consent"]);
+      const core = [].concat(S1, S6a, MID, HM, S6b, S2, S7); // THAI-244 R7: S2 (where) after S6b, before F
+      const bw = bwOrder(r);
+      const bwAt = BW_TARGETS.map(t => t + Math.floor(r() * 3) - 1);
+      bw.forEach((s, k) => core.splice(bwAt[k] - 1, 0, "BW" + (k + 1) + ":" + s));
+      const plan = { seed, core, bw, bwAt, rOrder: S2, sections: { S1, S2, S6a, MID, HM, S6b, S7 }, bwPos: bw.map(() => shuffle([0,1,2], r)), holdouts: [] };
+      const chk = check(plan);
+      if (chk.ok) { plan.optionOrder = optionOrders(plan, r); plan.checks = chk; plan.attempts = attempt + 1; return plan; }
+    }
+    throw new Error("no valid order for seed " + seed);
+  }
+  function dimOf(id) { if (id.startsWith("BW")) return "BW"; const it = byId[id]; return it ? it.dim : "?"; }
+  function firstWord(id) { if (id.startsWith("BW")) return "imagine"; const it = byId[id]; return ((it.prompt || it.q).split(/\s+/)[0] || "").toLowerCase().replace(/[^a-z']/g, ""); }
+  const BLOCK_DIMS = ["BW","F","AR","R","HM"]; // rating blocks by design (section J); adjacency and first-word rules apply to the rest
+  const FOOD = ["DN1","DN2","DN3","F-food","AR05","AR08","AR20"];
+  function check(plan) {
+    const c = plan.core, P = new Map(c.map((id, k) => [id, k])), pos = id => (P.has(id) ? P.get(id) : -1), errs = [];
+    const d = (x, y) => pos(y) - pos(x), gap = (x, y) => Math.abs(pos(x) - pos(y));
+    if (c.length !== CORE_N) errs.push("count " + c.length);
+    if (new Set(c).size !== c.length) errs.push("repeat");
+    for (let k = 1; k < c.length; k++) {
+      const a = dimOf(c[k-1]), b = dimOf(c[k]);
+      if (a === b && !BLOCK_DIMS.includes(a)) errs.push("adjacent " + a + " at " + k);
+      if ((a === "D2" && b === "D6") || (a === "D6" && b === "D2")) errs.push("D2/D6 at " + k);
+      if (FOOD.includes(c[k-1]) && FOOD.includes(c[k])) errs.push("food adjacent at " + k);
+    }
+    for (let k = 2; k < c.length; k++) { const w = firstWord(c[k]); if (!BLOCK_DIMS.includes(dimOf(c[k])) && w === firstWord(c[k-1]) && w === firstWord(c[k-2])) errs.push("first word run '" + w + "' at " + k); }
+    // scenarios first (M0133)
+    for (let k = 0; k < c.length; k++) { const dm = dimOf(c[k]); if (/^D\d$/.test(dm) && k > 25) errs.push("scenario late " + c[k]); }
+    const bwIdx = c.map((id, k) => id.startsWith("BW") ? k : -1).filter(k => k >= 0);
+    const g = pos("B4-02");
+    // water items after B4-02
+    c.forEach((id, k) => { const it = byId[id]; if (it && it.water && id !== "B4-02" && k < g) errs.push("general-first " + id); });
+    bwIdx.forEach(k => { if (hasWater(+c[k].split(":")[1]) && k < g) errs.push("general-first " + c[k]); });
+    // D-094 dispersal
+    if (bwIdx.length !== 7) errs.push("bw count " + bwIdx.length);
+    bwIdx.forEach((k, j) => { if (!c[k].startsWith("BW" + (j + 1) + ":")) errs.push("bw order"); if (Math.abs((k + 1) - BW_TARGETS[j]) > 1) errs.push("bw target " + (j + 1)); if (j && k - bwIdx[j-1] < 6) errs.push("bw gap < 6 at " + (j + 1)); });
+    const waterSets = bwIdx.filter(k => hasWater(+c[k].split(":")[1]));
+    const N = 8;
+    const dist = {
+      "B4-02>B6-01": d("B4-02","B6-01"), "B6-01>F-flight": d("B6-01","F-flight"), "B4-05>F-swim": d("B4-05","F-swim"), "B4-04>F-swim": d("B4-04","F-swim"),
+      "B4-02>firstWaterSet": waterSets[0] - g, "B4-01>firstWaterSet": waterSets[0] - pos("B4-01"),
+      bwMinGap: Math.min(...bwIdx.slice(1).map((k, j) => k - bwIdx[j])),
+      stayMin: Math.min(...pairs(["HT1","HT2","HT3","ST1"]).map(([x, y]) => gap(x, y))),
+      hmToStayMin: Math.min(...HMIDS.flatMap(h => ["HT1","HT2","HT3","ST1"].map(x => gap(h, x)))),
+      dineMin: Math.min(...pairs(["DN1","DN2","DN3","F-food"]).map(([x, y]) => gap(x, y))),
+      dnToFoodActMin: Math.min(...["DN1","DN2","DN3"].flatMap(x => AR_FOOD.map(y => gap(x, y)))),
+      "L1>L2": d("L1","L2"), lToDatesMin: Math.min(gap("L1","F-dates"), gap("L2","F-dates")),
+      acMin: Math.min(...pairs(["AC1","AC2","AC3"]).map(([x, y]) => gap(x, y))),
+    };
+    if (dist["B4-02>B6-01"] < 15) errs.push("B4-02>B6-01 < 15");
+    if (dist["B6-01>F-flight"] < N) errs.push("N B6-01>F-flight");
+    if (dist["B4-05>F-swim"] < 6) errs.push("B4-05>F-swim < 6");
+    if (dist["B4-04>F-swim"] < 6) errs.push("B4-04>F-swim < 6");
+    if (dist["B4-02>firstWaterSet"] < 7) errs.push("B4-02>water set < 7");
+    if (dist["B4-01>firstWaterSet"] < 4) errs.push("B4-01>water set < 4");
+    if (dist.stayMin < N) errs.push("stay items < 8");
+    if (!(pos("HT1") < pos("HT2") && pos("HT1") < pos("HT3"))) errs.push("HT1 not first");
+    if (dist.hmToStayMin < 4) errs.push("HM to stay < 4");
+    if (dist.dineMin < N) errs.push("dining items < 8");
+    if (!(pos("DN1") < pos("DN2") && pos("DN1") < pos("DN3"))) errs.push("DN1 not first");
+    if (dist.dnToFoodActMin < 3) errs.push("DN to food activity < 3");
+    if (dist["L1>L2"] < N) errs.push("L1>L2 < 8");
+    if (dist.lToDatesMin < N) errs.push("L to F-dates < 8");
+    if (dist.acMin < N) errs.push("AC < 8");
+    if (c[c.length - 1] !== "F-consent") errs.push("F-consent not last");
+    if (!(pos("R14") >= 0 && RIDS.every(id => pos(id) >= 0))) errs.push("R missing");
+    return { ok: errs.length === 0, errs, dist };
+  }
+  function pairs(a) { const o = []; for (let i = 0; i < a.length; i++) for (let j = i + 1; j < a.length; j++) o.push([a[i], a[j]]); return o; }
+  function optionOrders(plan, r) {
+    const out = {};
+    plan.core.forEach(id => {
+      if (id.startsWith("BW")) return;
+      const it = byId[id]; if (!it.opts) return;
+      const idx = it.opts.map((_, k) => k);
+      if (it.fixedOrder) out[id] = idx;
+      else if (it.ordinal) out[id] = r() < 0.5 ? idx : idx.slice().reverse();
+      else if (it.keepLast) { const n = idx.length - it.keepLast; out[id] = shuffle(idx.slice(0, n), r).concat(idx.slice(n)); }
+      else out[id] = shuffle(idx, r);
+    });
+    const chk = shuffle([1,2,3,4,5,6,7], r); out["BW-check"] = chk;
+    return out;
+  }
+  root.QA4 = { byId, layerA, B, F, NEW, PLACES, PICK_Q, RPA_Q, RPA_OPTS, RP_Q, CLOSE_Q, stepTwo, BW_TARGETS, BW_OBJ, BW_SETS, BW_PROMPT, CHECK, FAMILY, ALLERGIES, ALLERGY_FOLLOW, TEXTS, PNS, buildOrder, check, rng, VERSION: "QA-4 build 3 (D-093, D-094 dispersal, D-095 fixes D42-1/D42-3, D-096 to D-103 item set + THAI-244 review R1–R7), Oct 6 2026" };
+})(typeof window !== "undefined" ? window : globalThis);
+</script><script>
+(function () {
+  const Q = window.QA4;
+  const $ = s => document.querySelector(s);
+  const el = (tag, attrs, ...kids) => { const e = document.createElement(tag); if (attrs) for (const [k, v] of Object.entries(attrs)) { if (k === "class") e.className = v; else if (k.startsWith("on")) e.addEventListener(k.slice(2), v); else if (v === true) e.setAttribute(k, ""); else if (v !== false && v != null) e.setAttribute(k, v); } kids.flat().forEach(k => { if (k == null) return; e.append(k.nodeType ? k : document.createTextNode(String(k))); }); return e; };
+  const now = () => new Date().toISOString();
+  const LS = "qa4-draft-v1"; const lsKey = () => LS + ":" + SLUG; const SENT = "qa4-sent-v1"; // D42-1
+  let SLUG = null, saveTimer = null, S = null, shownAt = null, saving = false, pendingSave = false;
+
+  function newState(respondent) {
+    const seed = (crypto.getRandomValues(new Uint32Array(1))[0]) >>> 0;
+    const plan = Q.buildOrder(seed);
+    return { v: Q.VERSION, runId: "run_" + Date.now().toString(36) + "_" + seed.toString(36), respondent, seed, plan, answers: {}, log: {}, idx: 0, maxSeen: 0, startedAt: now(), updatedAt: now(), submittedAt: null, test: false, places: Q.PLACES }; // B8
+  }
+  // ----- screen list (allergy follow-up inserted only if an allergy is ticked) -----
+  function screens() {
+    const p = S.plan, out = [{ id: "welcome", kind: "welcome" }];
+    const lastR = p.rOrder[p.rOrder.length - 1];
+    p.core.forEach(id => { out.push({ id, kind: "item" }); if (id.startsWith("BW7:")) out.push({ id: "BW-check", kind: "item" }); if (id === "F-food" && hasAllergy()) out.push({ id: "F-food-trace", kind: "item" }); if (id === lastR) stepTwoScreens().forEach(x => out.push(x)); });
+    out.push({ id: "anything-else", kind: "text", q: Q.TEXTS.anythingElse });
+    out.push({ id: "CLOSE", kind: "text", q: Q.TEXTS.close });
+    out.push({ id: "send", kind: "send" });
+    return out;
+  }
+  // ----- step 2 of "where" (cap of 4 regions; PICK screens; RP one place per screen, grouped by region) -----
+  function stepTwoInfo() {
+    const rVals = {}; S.plan.rOrder.forEach(id => { const a = S.answers[id]; if (a) rVals[id] = a.value; });
+    const picks = [1,2,3,4].map(k => (S.answers["PICK" + k] || {}).value);
+    return Q.stepTwo(S.plan.rOrder, rVals, picks);
+  }
+  function stepTwoScreens() {
+    const info = stepTwoInfo(), out = [];
+    info.pickPools.forEach((pool, k) => out.push({ id: "PICK" + (k + 1), kind: "item", pool, nPick: info.nPick }));
+    if (!info.complete) return out;
+    info.regions.forEach(rid => Q.PLACES[rid].forEach((pl, j) => { const id = "RP:" + rid + ":" + j; out.push({ id, kind: "item" }); if ((S.answers[id] || {}).value === "E") out.push({ id: "RPA:" + rid + ":" + j, kind: "item" }); })); // R6: "Been there" (option E) -> one-tap follow-up
+    return out;
+  }
+  function hasAllergy() { const a = S.answers["F-food"]; return !!(a && a.picks && a.picks.some(x => Q.ALLERGIES.includes(x))); }
+  function itemDef(id) {
+    if (id === "BW-check") return Q.CHECK;
+    if (id.startsWith("BW")) { const s = +id.split(":")[1]; return { id, dim: "BW", kind: "bw", set: Q.BW_SETS[s], setIndex: s }; }
+    if (id === "F-food-trace") return Q.ALLERGY_FOLLOW;
+    if (/^PICK\d$/.test(id)) { const sc = screens().find(x => x.id === id); return { id, dim: "PICK", kind: "choice", q: Q.PICK_Q + " (choice " + id.slice(4) + " of " + sc.nPick + ")", choices: sc.pool.map(rid => ({ l: Q.byId[rid].q, v: rid })), extra: [] }; }
+    if (id.startsWith("RP:")) { const [, rid, j] = id.split(":"); return { id, dim: "RP", kind: "choice", title: Q.byId[rid].q, prompt: Q.RP_Q, q: Q.PLACES[rid][+j] + ".", opts: Q.byId[rid].opts, fixedOrder: true, extra: ["Don't know"] }; }
+    if (id.startsWith("RPA:")) { const [, rid, j] = id.split(":"); return { id, dim: "RPA", kind: "choice", title: Q.PLACES[rid][+j], q: Q.RPA_Q, opts: Q.RPA_OPTS, fixedOrder: true, extra: ["Don't know"] }; }
+    return Q.byId[id];
+  }
+  // ----- logging -----
+  function logOf(id) { return S.log[id] || (S.log[id] = { firstShown: null, visits: 0, activeMs: 0, changes: [] }); }
+  function enter(id) { const L = logOf(id); if (!L.firstShown) L.firstShown = now(); L.visits++; shownAt = performance.now(); }
+  const IDLE_MS = 60000; // D42-3: time stops 60 s after the last tap
+  function tick() { if (shownAt == null || !S) return; const sc = cur(); const t = performance.now(); if (sc && !document.hidden) logOf(sc.id).activeMs += Math.round(Math.min(t - shownAt, IDLE_MS)); shownAt = t; }
+  function leave(id) { if (shownAt != null && !document.hidden) { logOf(id).activeMs += Math.round(Math.min(performance.now() - shownAt, IDLE_MS)); } shownAt = null; }
+  ["pointerdown", "keydown"].forEach(ev => document.addEventListener(ev, tick, true));
+  document.addEventListener("visibilitychange", () => { const sc = cur(); if (!sc) return; if (document.hidden) { if (shownAt != null) logOf(sc.id).activeMs += Math.round(Math.min(performance.now() - shownAt, IDLE_MS)); shownAt = null; } else shownAt = performance.now(); }); // B6
+  function setAnswer(id, val) {
+    if (id === "F-food" && !(val.picks || []).some(x => Q.ALLERGIES.includes(x))) delete S.answers["F-food-trace"];
+    const prev = S.answers[id]; const L = logOf(id);
+    L.changes.push({ t: now(), from: prev ? summarize(prev) : null, to: summarize(val), afterLaterSeen: S.idx < S.maxSeen });
+    S.answers[id] = val; if (/^R\d\d$/.test(id) || /^PICK\d$/.test(id)) { const info = stepTwoInfo(); for (let k = 1; k <= 4; k++) { const v = (S.answers["PICK" + k] || {}).value; if (v != null && v !== Q.PNS && !(info.pickPools[k - 1] || []).includes(v)) { for (let m = k; m <= 4; m++) delete S.answers["PICK" + m]; break; } } } // B1
+    S.updatedAt = now(); queueSave();
+  }
+  function summarize(v) { return JSON.stringify(v).slice(0, 300); }
+  // ----- persistence -----
+  function queueSave() { try { localStorage.setItem(lsKey(), JSON.stringify(S)); } catch (e) {} clearTimeout(saveTimer); saveTimer = setTimeout(saveRemote, 1200); setStatus("Saving…"); }
+  const API = "https://nmnokkopegzrowcuolml.supabase.co/rest/v1/rpc/";
+  const KEY = "sb_publishable_N2t8ycm45kHPR-xByaMnzg_q6m49bN9";
+  async function rpc(fn, body) {
+    const r = await fetch(API + fn, { method: "POST", headers: { apikey: KEY, "Content-Type": "application/json" }, body: JSON.stringify(body) });
+    if (!r.ok) throw new Error(fn + " " + r.status + " " + (await r.text()).slice(0, 200));
+    return r.json();
+  }
+  async function saveRemote() {
+    if (!SLUG || !S || S.submittedAt) return;
+    if (saving) { pendingSave = true; return; }
+    saving = true;
+    try { await rpc("qa4_save", { p_slug: SLUG, p_run_id: S.runId, p_state: S, p_submit: false }); setStatus("Saved"); }
+    catch (e) { setStatus("Saved on this device; will retry"); clearTimeout(saveTimer); saveTimer = setTimeout(saveRemote, 15000); }
+    saving = false; if (pendingSave) { pendingSave = false; saveRemote(); }
+  }
+  function setStatus(t) { const s = $("#status"); if (s) s.textContent = t; }
+  // ----- navigation -----
+  function cur() { return S ? screens()[S.idx] : null; }
+  function go(delta) {
+    const list = screens(); const c = list[S.idx]; if (c) leave(c.id);
+    S._entered = -1; S.idx = Math.max(0, Math.min(list.length - 1, S.idx + delta)); S.maxSeen = Math.max(S.maxSeen, S.idx); S.updatedAt = now(); queueSave(); render(); window.scrollTo(0, 0);
+    const h = $("#q"); if (h) h.focus({ preventScroll: true });
+  }
+  // ----- rendering -----
+  function render() {
+    const main = $("#main"); main.replaceChildren();
+    const list = screens(), sc = list[S.idx];
+    if (S._entered !== S.idx) { enter(sc.id); S._entered = S.idx; }
+    const coreTotal = list.filter(x => x.kind === "item").length;
+    const done = list.slice(0, S.idx).filter(x => x.kind === "item").length;
+    $("#progress").style.setProperty("--p", Math.round(100 * done / coreTotal) + "%");
+    $("#count").textContent = sc.kind === "item" ? `Question ${done + 1} of ${coreTotal}` : "";
+    if (sc.kind === "welcome") return renderWelcome(main);
+    if (sc.kind === "text") return renderText(main, sc);
+    if (sc.kind === "send") return renderSend(main, list);
+    renderItem(main, itemDef(sc.id));
+  }
+  function nav(main, canNext, nextLabel) {
+    const bar = el("div", { class: "nav" },
+      S.idx > 0 ? el("button", { class: "ghost", type: "button", onclick: () => go(-1) }, "Back") : el("span"),
+      el("button", { class: "primary", type: "button", id: "next", disabled: !canNext, onclick: () => go(1) }, nextLabel || "Next"));
+    main.append(bar);
+  }
+  function renderWelcome(main) {
+    main.append(el("h1", { id: "q", tabindex: "-1" }, "Planning our family holiday"));
+    Q.TEXTS.welcome.forEach(t => main.append(el("p", { class: "lede" }, t)));
+    nav(main, true, "Start");
+  }
+  function renderInfo(main, text) { main.append(el("p", { class: "info", id: "q", tabindex: "-1" }, text)); nav(main, true, "Continue"); }
+  function renderText(main, sc) {
+    const a = S.answers[sc.id] || {};
+    main.append(el("h2", { class: "q", id: "q", tabindex: "-1" }, sc.q));
+    const ta = el("textarea", { id: "t-" + sc.id, rows: "5", "aria-labelledby": "q" }); ta.value = a.text || "";
+    ta.addEventListener("change", () => setAnswer(sc.id, { text: ta.value.trim(), skipped: !ta.value.trim() }));
+    main.append(ta);
+    nav(main, true, a.text ? "Next" : "Skip or continue");
+  }
+  function optButton(label, selected, onclick, cls) {
+    return el("button", { type: "button", class: "opt" + (selected ? " on" : "") + (cls ? " " + cls : ""), "aria-pressed": selected ? "true" : "false", onclick }, label);
+  }
+  function renderItem(main, it) {
+    const a = S.answers[it.id];
+    const prompt = it.prompt || (it.kind === "ipip" ? Q.TEXTS.ipipPrompt : it.kind === "likert" ? Q.TEXTS.likertPrompt : it.kind === "bw" ? Q.BW_PROMPT : null);
+    if (it.title) main.append(el("p", { class: "prompt" }, el("strong", null, it.title)));
+    if (prompt && it.kind !== "bw") main.append(el("p", { class: "prompt" }, prompt));
+    if (it.kind === "bw") { main.append(el("h2", { class: "q", id: "q", tabindex: "-1" }, Q.BW_PROMPT)); return renderBW(main, it, a); }
+    main.append(el("h2", { class: "q" + (it.kind === "ipip" ? " stem" : ""), id: "q", tabindex: "-1" }, it.kind === "ipip" ? "“" + it.q + "”" : it.q));
+    if (it.kind === "multi") return renderMulti(main, it, a);
+    if (it.kind === "d040") return renderD040(main, it, a);
+    const group = el("div", { class: "opts", role: "group", "aria-labelledby": "q" });
+    const pick = v => { if (a && a.value === v) return; setAnswer(it.id, { value: v }); render(); };
+    let labels;
+    if (it.kind === "ipip" || it.kind === "likert" || it.kind === "bipolar") labels = it.scale.map((l, k) => ({ l, v: k + 1 }));
+    else if (it.choices) labels = it.choices;
+    else { const order = S.plan.optionOrder[it.id] || it.opts.map((_, k) => k); labels = order.map(k => ({ l: it.opts[k], v: "ABCDEFGHIJ"[k] })); }
+    labels.forEach(o => group.append(optButton(o.l, a && a.value === o.v, () => pick(o.v))));
+    main.append(group);
+    const extras = (it.extra || []).concat([Q.PNS]);
+    const ex = el("div", { class: "opts extras", role: "group", "aria-label": "Other answers" });
+    extras.forEach(x => ex.append(optButton(x, a && a.value === x, () => pick(x), "minor")));
+    main.append(ex);
+    if (a && a.value === "It depends") {
+      const ta = el("textarea", { id: "dep-" + it.id, rows: "3", placeholder: "Depends on what? (optional)", "aria-label": "Depends on what? (optional)" }); ta.value = a.note || "";
+      ta.addEventListener("change", () => setAnswer(it.id, { value: "It depends", note: ta.value.trim() }));
+      main.append(ta);
+    }
+    nav(main, !!(a && a.value != null));
+  }
+  function renderMulti(main, it, a) {
+    a = a || { picks: [], texts: {} };
+    let opts = it.opts;
+    if (it.id === "BW-check") opts = S.plan.optionOrder["BW-check"].map(k => Q.BW_OBJ[k]).concat(["None of these"]);
+    const box = el("div", { class: "opts" , role: "group", "aria-labelledby": "q"});
+    const toggle = o => {
+      let picks = (a.picks || []).filter(x => x !== Q.PNS);
+      const excl = (it.exclusive || []);
+      if (picks.includes(o)) picks = picks.filter(x => x !== o);
+      else if (excl.includes(o)) picks = [o];
+      else picks = picks.filter(x => !excl.includes(x)).concat([o]);
+      setAnswer(it.id, { picks, texts: a.texts || {} }); render();
+    };
+    opts.forEach(o => {
+      const on = (a.picks || []).includes(o);
+      box.append(optButton(o, on, () => toggle(o), "check"));
+      if (on && it.textFor && it.textFor.includes(o)) {
+        const inp = el("input", { type: "text", id: "tx-" + it.id + "-" + opts.indexOf(o), "aria-label": o, placeholder: "Please say" }); inp.value = (a.texts || {})[o] || "";
+        inp.addEventListener("change", () => { const t = Object.assign({}, a.texts || {}); t[o] = inp.value.trim(); setAnswer(it.id, { picks: a.picks, texts: t }); });
+        box.append(inp);
+      }
+    });
+    main.append(box);
+    const pns = (a.picks || []).includes(Q.PNS);
+    main.append(el("div", { class: "opts extras" }, optButton(Q.PNS, pns, () => { setAnswer(it.id, { picks: pns ? [] : [Q.PNS], texts: {} }); render(); }, "minor")));
+    nav(main, (a.picks || []).length > 0);
+  }
+  function renderBW(main, it, a) {
+    a = a || {};
+    const posOrder = S.plan.bwPos[S.plan.bw.indexOf(it.setIndex)];
+    const objs = posOrder.map(k => it.set[k]);
+    const set = (field, obj) => { const n = Object.assign({}, a); delete n.pns; n[field] = obj; if (field === "most" && n.least === obj) delete n.least; if (field === "least" && n.most === obj) delete n.most; setAnswer(it.id, n); render(); };
+    const grid = el("div", { class: "bw" });
+    objs.forEach(o => {
+      grid.append(el("div", { class: "bwrow" + (a.most === o ? " most" : a.least === o ? " least" : "") },
+        el("span", { class: "bwlabel" }, Q.BW_OBJ[o]),
+        el("div", { class: "bwbtns" },
+          optButton("Most", a.most === o, () => set("most", o), "pill"),
+          optButton("Least", a.least === o, () => set("least", o), "pill"))));
+    });
+    main.append(grid);
+    main.append(el("div", { class: "opts extras" }, optButton(Q.PNS, !!a.pns, () => { setAnswer(it.id, a.pns ? {} : { pns: true }); render(); }, "minor")));
+    nav(main, !!(a.pns || (a.most && a.least && a.most !== a.least)));
+  }
+  function renderD040(main, it, a) {
+    a = a || {};
+    const others = Q.FAMILY.filter(n => n !== S.respondent).concat(["Someone else"]);
+    const box = el("div", { class: "opts", role: "group", "aria-labelledby": "q" });
+    [["No one", "none"], ["Yes", "yes"]].forEach(([l, v]) => box.append(optButton(l, a.value === v, () => { setAnswer(it.id, v === "yes" ? { value: "yes", pairs: a.pairs && a.pairs.length ? a.pairs : [{ person: "", other: "", activity: "", any: false }] } : { value: v }); render(); })));
+    main.append(box);
+    if (a.value === "yes") {
+      const pairs = a.pairs.map(p => Object.assign({}, p));
+      const commit = () => setAnswer(it.id, { value: "yes", pairs });
+      const okNow = () => pairs.every(p => p.person && (p.person !== "Someone else" || p.other) && (p.any || p.activity));
+      const live = () => { S.answers[it.id] = { value: "yes", pairs }; const n = $("#next"); if (n) n.disabled = !okNow(); };
+      pairs.forEach((p, k) => {
+        const sel = el("select", { id: "d040p" + k, "aria-label": "Person" }, el("option", { value: "" }, "Choose a person"), others.map(n => el("option", { value: n, selected: p.person === n }, n)));
+        sel.addEventListener("change", () => { p.person = sel.value; commit(); render(); });
+        const row = el("div", { class: "pair" }, sel);
+        if (p.person === "Someone else") { const o = el("input", { type: "text", id: "d040o" + k, placeholder: "Their name", "aria-label": "Their name" }); o.value = p.other || ""; o.addEventListener("input", () => { p.other = o.value.trim(); live(); }); o.addEventListener("change", () => { p.other = o.value.trim(); commit(); }); row.append(o); }
+        const act = el("input", { type: "text", id: "d040a" + k, placeholder: "Which activity?", "aria-label": "Which activity?", disabled: p.any }); act.value = p.activity || "";
+        act.addEventListener("input", () => { p.activity = act.value.trim(); live(); }); act.addEventListener("change", () => { p.activity = act.value.trim(); commit(); });
+        const any = el("label", { class: "inline" }, el("input", { type: "checkbox", id: "d040any" + k, checked: p.any, onchange: e => { p.any = e.target.checked; commit(); render(); } }), " Any activity");
+        row.append(act, any);
+        if (pairs.length > 1) row.append(el("button", { type: "button", class: "ghost small", onclick: () => { pairs.splice(k, 1); commit(); render(); } }, "Remove"));
+        main.append(row);
+      });
+      main.append(el("button", { type: "button", class: "ghost small", onclick: () => { pairs.push({ person: "", other: "", activity: "", any: false }); commit(); render(); } }, "Add another person"));
+    }
+    main.append(el("div", { class: "opts extras" }, optButton(Q.PNS, a.value === Q.PNS, () => { setAnswer(it.id, { value: Q.PNS }); render(); }, "minor")));
+    const okPairs = a.value === "yes" && a.pairs.every(p => p.person && (p.person !== "Someone else" || p.other) && (p.any || p.activity));
+    nav(main, a.value === "none" || a.value === Q.PNS || okPairs);
+  }
+  function renderSend(main, list) {
+    const items = list.filter(x => x.kind === "item");
+    const answered = items.filter(x => S.answers[x.id]).length;
+    const pns = items.filter(x => { const v = S.answers[x.id]; return v && (v.value === Q.PNS || v.pns || (v.picks && v.picks[0] === Q.PNS)); }).length;
+    main.append(el("h2", { class: "q", id: "q", tabindex: "-1" }, S.submittedAt ? "Sent. Thank you!" : "All done. Ready to send?"));
+    main.append(el("p", { class: "lede" }, `You answered ${answered} of ${items.length} questions` + (pns ? ` (${pns} with “Prefer not to say”).` : ".")));
+    if (S.submittedAt) { main.append(el("p", { class: "lede" }, "Your answers are saved. You can close this page.")); main.append(el("div", { class: "nav" }, el("span"), el("button", { class: "primary", type: "button", disabled: true }, "Sent"))); return; /* B5 */ }
+    const btn = el("button", { class: "primary", type: "button", id: "send", onclick: () => submit(btn) }, "Send my answers");
+    main.append(el("div", { class: "nav" }, el("button", { class: "ghost", type: "button", onclick: () => go(-1) }, "Back"), btn));
+  }
+  async function submit(btn) {
+    btn.disabled = true; btn.textContent = "Sending…";
+    const c = cur(); leave(c.id); shownAt = performance.now();
+    const live = new Set(screens().map(x => x.id)); Object.keys(S.answers).forEach(k => { if (/^(PICK\d|RP:|RPA:)/.test(k) && !live.has(k)) delete S.answers[k]; }); // B3
+    S.submittedAt = now();
+    let ok = false;
+    try { const back = await rpc("qa4_save", { p_slug: SLUG, p_run_id: S.runId, p_state: S, p_submit: true }); ok = !!(back && back.submitted_at); }
+    catch (e) { ok = false; }
+    if (!ok) { S.submittedAt = null; try { localStorage.setItem(lsKey(), JSON.stringify(S)); } catch (e) {} btn.disabled = false; btn.textContent = "Try sending again"; setStatus("Not sent. Please check your connection and try again. Your answers are still saved on this device."); return; }
+    try { localStorage.setItem(lsKey(), JSON.stringify(S)); localStorage.setItem(SENT + ":" + SLUG, S.submittedAt); } catch (e) {}
+    render();
+  }
+  // ----- start screens -----
+  function intro(lines, buttons) {
+    const main = $("#main"); main.replaceChildren(); $("#count").textContent = "";
+    main.append(el("h1", { id: "q", tabindex: "-1" }, "Planning our family holiday"));
+    lines.forEach(t => main.append(el("p", { class: "lede" }, t)));
+    if (buttons) main.append(el("div", { class: "nav" }, buttons));
+  }
+  function startFresh(name) { S = newState(name); queueSave(); render(); }
+  async function boot() {
+    const m = /[?&]p=([a-z]+)/i.exec(location.search); SLUG = m ? m[1].toLowerCase() : null;
+    if (!SLUG) { intro(["Please open this page from the personal link you were sent."]); return; }
+    intro(["Loading\u2026"]);
+    let name = null, remote = null, local = null;
+    try { local = JSON.parse(localStorage.getItem(LS + ":" + SLUG) || "null"); } catch (e) {}
+    try { name = await rpc("qa4_whoami", { p_slug: SLUG }); remote = await rpc("qa4_load", { p_slug: SLUG }); setStatus("Connected"); }
+    catch (e) { setStatus("Offline: answers save on this device until the connection returns"); name = local && local.respondent; }
+    if (!name) { intro(["This link doesn't look right. Please open the personal link you were sent."]); return; }
+    let sentAt = null; try { sentAt = localStorage.getItem(SENT + ":" + SLUG); } catch (e) {}
+    if (!sentAt && local && local.submittedAt) sentAt = local.submittedAt;
+    if (!sentAt && remote && remote.submitted_at) sentAt = remote.submitted_at;
+    if (sentAt) { intro(["Thank you, sent.", `Thank you, ${name}. Your answers were sent on ${new Date(sentAt).toLocaleString()}.`]); return; } // D42-1: never offer Continue / Start again after sending
+    const cands = [local && local.respondent === name ? local : null, remote && !remote.submitted_at ? remote.state : null].filter(d => d && !d.submittedAt && d.v === Q.VERSION);
+    cands.sort((a, b) => (b.updatedAt > a.updatedAt ? 1 : -1));
+    const d = cands[0];
+    if (!d) return startFresh(name);
+    intro([`${name}, you have answers saved from ${new Date(d.updatedAt).toLocaleString()}.`], [
+      el("button", { class: "ghost", type: "button", onclick: () => startFresh(name) }, "Start again"),
+      el("button", { class: "primary", type: "button", onclick: () => { S = d; S._entered = -1; render(); } }, "Continue")]);
+  }
+  window.QA4APP = { get state() { return S; }, screens: () => screens(), go };
+  boot();
+})();
+</script></body></html>
