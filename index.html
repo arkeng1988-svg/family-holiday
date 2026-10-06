@@ -319,7 +319,7 @@ button:focus-visible,.opt:focus-visible,textarea:focus-visible,input:focus-visib
     const chk = shuffle([1,2,3,4,5,6,7], r); out["BW-check"] = chk;
     return out;
   }
-  root.QA4 = { byId, layerA, B, F, NEW, PLACES, PICK_Q, RPA_Q, RPA_OPTS, RP_Q, CLOSE_Q, stepTwo, BW_TARGETS, BW_OBJ, BW_SETS, BW_PROMPT, CHECK, FAMILY, ALLERGIES, ALLERGY_FOLLOW, TEXTS, PNS, buildOrder, check, rng, VERSION: "QA-4 build 3 (D-093, D-094 dispersal, D-095 fixes D42-1/D42-3, D-096 to D-103 item set + THAI-244 review R1–R7), Oct 6 2026" };
+  root.QA4 = { byId, layerA, B, F, NEW, PLACES, PICK_Q, RPA_Q, RPA_OPTS, RP_Q, CLOSE_Q, stepTwo, BW_TARGETS, BW_OBJ, BW_SETS, BW_PROMPT, CHECK, FAMILY, ALLERGIES, ALLERGY_FOLLOW, TEXTS, PNS, buildOrder, check, rng, VERSION: "QA-4 build 3.1 (counter without total, D040 skippable; D-093, D-094 dispersal, D-095 fixes D42-1/D42-3, D-096 to D-103 item set + THAI-244 review R1–R7), Oct 6 2026" };
 })(typeof window !== "undefined" ? window : globalThis);
 </script><script>
 (function () {
@@ -414,10 +414,11 @@ button:focus-visible,.opt:focus-visible,textarea:focus-visible,input:focus-visib
     const main = $("#main"); main.replaceChildren();
     const list = screens(), sc = list[S.idx];
     if (S._entered !== S.idx) { enter(sc.id); S._entered = S.idx; }
-    const coreTotal = list.filter(x => x.kind === "item").length;
+    const fixed = x => x.kind === "item" && !/^(PICK\d|RP:|RPA:|F-food-trace$)/.test(x.id); // 3.1: answer-dependent screens excluded
+    const coreTotal = list.filter(fixed).length, coreDone = list.slice(0, S.idx).filter(fixed).length;
     const done = list.slice(0, S.idx).filter(x => x.kind === "item").length;
-    $("#progress").style.setProperty("--p", Math.round(100 * done / coreTotal) + "%");
-    $("#count").textContent = sc.kind === "item" ? `Question ${done + 1} of ${coreTotal}` : "";
+    $("#progress").style.setProperty("--p", Math.round(100 * coreDone / coreTotal) + "%");
+    $("#count").textContent = sc.kind === "item" ? `Question ${done + 1}` : ""; // 3.1: no total, so the number never jumps
     if (sc.kind === "welcome") return renderWelcome(main);
     if (sc.kind === "text") return renderText(main, sc);
     if (sc.kind === "send") return renderSend(main, list);
@@ -545,7 +546,7 @@ button:focus-visible,.opt:focus-visible,textarea:focus-visible,input:focus-visib
     }
     main.append(el("div", { class: "opts extras" }, optButton(Q.PNS, a.value === Q.PNS, () => { setAnswer(it.id, { value: Q.PNS }); render(); }, "minor")));
     const okPairs = a.value === "yes" && a.pairs.every(p => p.person && (p.person !== "Someone else" || p.other) && (p.any || p.activity));
-    nav(main, a.value === "none" || a.value === Q.PNS || okPairs);
+    nav(main, !a.value || a.value === "none" || a.value === Q.PNS || okPairs); // 3.1: optional, Next works with no answer
   }
   function renderSend(main, list) {
     const items = list.filter(x => x.kind === "item");
@@ -590,7 +591,7 @@ button:focus-visible,.opt:focus-visible,textarea:focus-visible,input:focus-visib
     if (!sentAt && local && local.submittedAt) sentAt = local.submittedAt;
     if (!sentAt && remote && remote.submitted_at) sentAt = remote.submitted_at;
     if (sentAt) { intro(["Thank you, sent.", `Thank you, ${name}. Your answers were sent on ${new Date(sentAt).toLocaleString()}.`]); return; } // D42-1: never offer Continue / Start again after sending
-    const cands = [local && local.respondent === name ? local : null, remote && !remote.submitted_at ? remote.state : null].filter(d => d && !d.submittedAt && d.v === Q.VERSION);
+    const cands = [local && local.respondent === name ? local : null, remote && !remote.submitted_at ? remote.state : null].filter(d => d && !d.submittedAt && (d.v === Q.VERSION || d.v === "QA-4 build 3 (D-093, D-094 dispersal, D-095 fixes D42-1/D42-3, D-096 to D-103 item set + THAI-244 review R1–R7), Oct 6 2026")); // 3.1: build-3 drafts resume (same plan and items)
     cands.sort((a, b) => (b.updatedAt > a.updatedAt ? 1 : -1));
     const d = cands[0];
     if (!d) return startFresh(name);
